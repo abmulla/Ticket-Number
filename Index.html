@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Ticket Number</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 0.5em;
+    }
+    .number {
+      font-size: 3em;
+      color: #2196f3;
+      font-weight: bold;
+    }
+    button {
+      margin-top: 1em;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Ticket Number</h1>
+  <div class="number" id="randomNumber">0000</div>
+  <button onclick="generateRandomNumber()">Generate</button>
+
+  <script>
+    function generateRandomNumber() {
+      const number = Math.floor(1000 + Math.random() * 9000);
+      document.getElementById("randomNumber").textContent = number;
+    }
+
+    // Generate one on page load
+    generateRandomNumber();
+  </script>
+</body>
+</html>

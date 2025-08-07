@@ -63,21 +63,17 @@
   </div>
 
   <script>
-    function getNextSerialNumber() {
-      let current = localStorage.getItem("serialNumber");
-      current = current ? parseInt(current) + 1 : 1000;
-      if (current > 9999) current = 1000;
-      localStorage.setItem("serialNumber", current);
-      return current;
+    function generateRandom4DigitNumber() {
+      return Math.floor(1000 + Math.random() * 9000);
     }
 
     function generateRandomNumber() {
-      const number = getNextSerialNumber();
+      const number = generateRandom4DigitNumber();
       document.getElementById("randomNumber").textContent = number;
     }
 
     // Show number on load
-    document.getElementById("randomNumber").textContent = getNextSerialNumber();
+    document.getElementById("randomNumber").textContent = generateRandom4DigitNumber();
   </script>
 </body>
 </html>

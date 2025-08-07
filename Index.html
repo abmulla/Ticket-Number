@@ -10,40 +10,74 @@
       background: #f7f7f7;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       height: 100vh;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
     }
     h1 {
       font-size: 2em;
-      margin-bottom: 0.5em;
+      margin-bottom: 0.3em;
+    }
+    .subtitle {
+      font-size: 1.2em;
+      color: #444;
+      margin-bottom: 0.2em;
     }
     .number {
       font-size: 3em;
       color: #2196f3;
       font-weight: bold;
+      margin-top: 1em;
     }
     button {
-      margin-top: 1em;
+      margin-top: 2em;
       padding: 10px 20px;
       font-size: 1em;
       cursor: pointer;
     }
+    .footer {
+      font-size: 0.95em;
+      color: #555;
+      margin-top: 3em;
+      max-width: 90%;
+    }
   </style>
 </head>
 <body>
-  <h1>Your Ticket Number</h1>
-  <div class="number" id="randomNumber">0000</div>
-  <button onclick="generateRandomNumber()">Generate</button>
+  <div>
+    <h1>Welcome to HYPERLOOP | ONE</h1>
+    <div class="subtitle">The future is here.....</div>
+    <div class="subtitle">Please use this number to start</div>
+
+    <div class="number" id="randomNumber">0000</div>
+    <button onclick="generateRandomNumber()">Generate New Ticket</button>
+  </div>
+
+  <div class="footer">
+    Thank you for scanning the QR code.<br>
+    It's just a prototype project for <strong>Mohammed Gaus</strong> from class <strong>4A, AECS-6</strong><br>
+    to demonstrate his science project on <em>"Transportation and Communication: Smart Systems"</em>.
+  </div>
 
   <script>
+    function getNextSerialNumber() {
+      let current = localStorage.getItem("serialNumber");
+      current = current ? parseInt(current) + 1 : 1000;
+      if (current > 9999) current = 1000;
+      localStorage.setItem("serialNumber", current);
+      return current;
+    }
+
     function generateRandomNumber() {
-      const number = Math.floor(1000 + Math.random() * 9000);
+      const number = getNextSerialNumber();
       document.getElementById("randomNumber").textContent = number;
     }
 
-    // Generate one on page load
-    generateRandomNumber();
+    // Show number on load
+    document.getElementById("randomNumber").textContent = getNextSerialNumber();
   </script>
 </body>
 </html>
